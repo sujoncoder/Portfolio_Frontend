@@ -1,18 +1,24 @@
 "use client";
-
+import { NodeRuntime } from "inspector/promises";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
-const CertificateCard = ({ institute, course, image }) => {
+interface ICertificateCardProps {
+  institute: string;
+  course: string;
+  image: string
+};
+
+const CertificateCard = ({ institute, course, image }: ICertificateCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const modalRef = useRef();
+  const modalRef = useRef(0);
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleClickOutside = (event) => {
-    if (modalRef.current && !modalRef.current.contains(event.target)) {
+  const handleClickOutside = (event: MouseEvent) => {
+    if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
       setIsOpen(false);
     }
   };
@@ -20,9 +26,9 @@ const CertificateCard = ({ institute, course, image }) => {
   useEffect(() => {
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
-      document.body.style.overflow = "hidden"; // Prevent background scroll
+      document.body.style.overflow = "hidden";
       if (modalRef.current) {
-        modalRef.current.scrollTop = 0; // Ensure modal starts at the top
+        modalRef.current.scrollTop = 0;
       }
     } else {
       document.removeEventListener("mousedown", handleClickOutside);

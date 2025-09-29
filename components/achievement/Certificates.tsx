@@ -1,6 +1,7 @@
-import certificates from "@/data/certificatesDB";
 import Image from "next/image";
 import CertificateCard from "./CertificateCard";
+import { ICertificate } from "@/types";
+import certificates from "@/data/certificatesDB";
 
 
 const Certificates = () => {
@@ -21,9 +22,9 @@ const Certificates = () => {
         </span>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {certificates.map((certificate, index) => (
+        {certificates.map((certificate: ICertificate) => (
           <CertificateCard
-            key={index}
+            key={certificate.course}
             institute={certificate.institute}
             course={certificate.course}
             image={certificate.img}

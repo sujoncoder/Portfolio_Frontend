@@ -1,9 +1,9 @@
 "use client";
 
-import testimonials from "@/data/testmonialDB.js";
-import { AnimatePresence } from "framer-motion";
+import { AnimatePresence } from "motion/react";
 import Image from "next/image.js";
 import TestimonialCard from "./TestmonialCard";
+import testimonials from "@/data/testmonialDB";
 
 
 const Testimonials = () => {

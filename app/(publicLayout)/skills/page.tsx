@@ -1,16 +1,16 @@
 "use client";
 
+import { useState } from "react";
 import SkillsFilter from "@/components/skills/SkillsFilter";
 import SkillsList from "@/components/skills/SkillsList";
 import SkillsTextContent from "@/components/skills/SkillsTextContent";
 import SkillsData from "@/data/skillsDB";
-import { useState } from "react";
 
 const Skills = () => {
   const [filteredSkills, setFilteredSkills] = useState(SkillsData);
   const [selectedCategory, setSelectedCategory] = useState("all");
 
-  const filterSkillByCategory = (category) => {
+  const filterSkillByCategory = (category: string) => {
     if (category === "all") {
       setFilteredSkills(SkillsData);
     } else {
@@ -29,7 +29,7 @@ const Skills = () => {
         onFilterSkillByCategory={filterSkillByCategory}
         onSelectCategory={selectedCategory}
       />
-      <SkillsList onCatgory={filteredSkills} />
+      <SkillsList onCategory={filteredSkills} />
     </div>
   );
 };

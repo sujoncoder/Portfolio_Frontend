@@ -1,11 +1,20 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Image from "next/image";
 import { useState } from "react";
 import { IconBrandLinkedin } from '@tabler/icons-react';
 
-const TestimonialCard = ({ name, title, text, image, link }) => {
+
+interface ITestimonialCardProps {
+  name: string;
+  title: string;
+  text: string
+  image: string
+  link: string
+};
+
+const TestimonialCard = ({ name, title, text, image, link }: ITestimonialCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleExpand = () => {

@@ -1,7 +1,14 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Image from "next/image";
 
-const Skill = ({ selectSkill }) => {
+interface selectSkillProps {
+  title: string;
+  img: string;
+  level: string;
+};
+
+
+const Skill = ({ selectSkill }: { selectSkill: selectSkillProps }) => {
   console.log(selectSkill)
   return (
     <motion.div

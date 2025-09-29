@@ -1,4 +1,8 @@
-const testimonials = [
+import { ITestimonials } from "@/types";
+
+
+// TESTIMONIALS DATA
+const testimonials: ITestimonials[] = [
   {
     name: "Sajid Rashid",
     title: "Management at IFIC Bank",

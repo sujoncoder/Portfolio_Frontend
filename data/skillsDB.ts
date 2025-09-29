@@ -1,4 +1,6 @@
-const skills = [
+import { ISkills } from "@/types";
+
+const skillsDB: ISkills[] = [
   {
     id: "1",
     title: "Javascript",
@@ -111,13 +113,6 @@ const skills = [
     category: "tools",
     level: "⭐⭐⭐⭐⭐",
   },
-  // {
-  //   id: "9",
-  //   title: "MySQL",
-  //   img: "https://i.ibb.co/sH8Y2nn/mysql.png",
-  //   category: "web",
-  //   level: "⭐⭐",
-  // },
   {
     id: "25",
     title: "Vite",
@@ -142,8 +137,8 @@ const skills = [
   {
     id: "33",
     title: "Framer M",
-    img: "https://i.ibb.co/xMvVsWp/Framer-Motion.png",
-    category: "frontend",
+    img: "https://i.ibb.co/xMvVsWp/motion/react.png",
+    category: "tools",
     level: "⭐⭐⭐",
   },
   {
@@ -206,7 +201,7 @@ const skills = [
     id: "34",
     title: "Gsap",
     img: "https://i.ibb.co/JRc6z1J/gsap.png",
-    category: "frontend",
+    category: "tools",
     level: "⭐⭐⭐",
   },
   {
@@ -223,13 +218,6 @@ const skills = [
     category: "tools",
     level: "⭐⭐⭐⭐⭐",
   },
-  // {
-  //   id: "15",
-  //   title: "AWS",
-  //   img: "https://i.ibb.co/PTQpMS9/aws.png",
-  //   category: "web",
-  //   level: "⭐",
-  // },
   {
     id: "17",
     title: "Bootstrap",
@@ -239,4 +227,4 @@ const skills = [
   },
 ];
 
-export default skills;
+export default skillsDB;

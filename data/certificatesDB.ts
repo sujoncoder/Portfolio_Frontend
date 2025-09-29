@@ -1,4 +1,8 @@
-const certificates = [
+import { ICertificate } from "@/types";
+
+
+// CERTIFICATE DATA
+export const certificates: ICertificate[] = [
   {
     institute: "Magura Govt H.S.S College",
     course: "Basic Web & Photo Shop",

@@ -1,4 +1,6 @@
-const projects = [
+import { IProjects } from "@/types";
+
+export const projectsDB: IProjects[] = [
   {
     id: "1",
     title: "Travell Lodge",
@@ -34,7 +36,7 @@ const projects = [
     category: "frontend",
     live: "https://movies-filter-six.vercel.app/",
     code: "https://github.com/sujoncoder/Movies_Filter",
-    technologies: ["Next.js", "Tailwind-css", "Framer-motion"],
+    technologies: ["Next.js", "Tailwind-css", "motion/react"],
     description: ["Filtering popular movies"],
   },
   {
@@ -394,4 +396,4 @@ const projects = [
     ],
   },
 ];
-export default projects;
+export default projectsDB;
