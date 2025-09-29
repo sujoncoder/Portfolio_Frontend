@@ -1,7 +1,10 @@
+import React from "react"
 
-const PrivateLayout = () => {
+const PrivateLayout = ({ children }: { children: React.ReactNode }) => {
     return (
-        <div>PublicLayout</div>
+        <>
+            {children}
+        </>
     )
 }
 
