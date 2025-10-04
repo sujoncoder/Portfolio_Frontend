@@ -9,11 +9,7 @@ const HomePage = () => {
         <AboutTextContent />
         <DeveloperImage />
       </div>
-      <br />
-      <hr />
-      <div>
-        <WhatIDo />
-      </div>
+      <WhatIDo />
     </>
   );
 };

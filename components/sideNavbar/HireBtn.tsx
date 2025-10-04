@@ -3,6 +3,7 @@ import confetti from "canvas-confetti";
 import { useRouter } from "next/navigation";
 import { IconSend } from '@tabler/icons-react';
 
+
 const Hirebtn = () => {
   const router = useRouter();
   const handleConfetti = () => {
@@ -21,7 +22,7 @@ const Hirebtn = () => {
   return (
     <Button
       disableRipple
-      className="hidden h-10 w-36 sm:flex font-medium justify-center space-x-2 items-center rounded bg-[#5cc48a] active:bg-[#1b864b] duration-300 text-slate-100"
+      className="hidden h-10 w-36 sm:flex font-medium justify-center space-x-2 items-center rounded bg-[#5cc48a] active:bg-[#1b864b] duration-300 text-slate-100 cursor-pointer"
       size="lg"
       onPress={handleConfetti}
     >

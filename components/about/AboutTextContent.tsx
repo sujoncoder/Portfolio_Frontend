@@ -21,14 +21,14 @@ const AboutTextContent = () => {
         Check out my
         <button
           onClick={() => handleClick("/blog")}
-          className="text-[#5cc48a] px-1"
+          className="text-[#5cc48a] px-1 cursor-pointer"
         >
           blog
         </button>
         for tips and insights, and explore my
         <button
           onClick={() => handleClick("/projects")}
-          className="text-[#5cc48a] px-1"
+          className="text-[#5cc48a] px-1 cursor-pointer"
         >
           projects
         </button>
@@ -39,7 +39,7 @@ const AboutTextContent = () => {
       <div className="space-x-4">
         <button
           onClick={() => handleClick("/projects")}
-          className="bg-[#5cc48a] active:bg-[#1b864b] duration-200 rounded px-2 sm:px-4 py-2 text-slate-100 inline-flex justify-between items-center space-x-2 font-medium"
+          className="bg-[#5cc48a] active:bg-[#1b864b] duration-200 rounded px-2 sm:px-4 py-2 text-slate-100 inline-flex justify-between items-center space-x-2 font-medium cursor-pointer"
         >
           <IconArrowRightTail className="w-5 h-5 hover:rotate-90 duration-300" />
           <span>View Portfolio</span>
@@ -47,8 +47,8 @@ const AboutTextContent = () => {
 
         <a
           target="_blank"
-          href="https://drive.google.com/file/d/1D0ldF06QSUK2SggL6PaneIuOByJUDBVt/view?usp=sharing"
-          className="bg-[#32455b] active:bg-[#0f2a47] duration-200 rounded px-2 sm:px-4 py-2 text-slate-100 inline-flex justify-between items-center space-x-2 font-medium"
+          href=""
+          className="bg-[#32455b] active:bg-[#0f2a47] duration-200 rounded px-2 sm:px-4 py-2 text-slate-100 inline-flex justify-between items-center space-x-2 font-medium cursor-pointer"
         >
           <IconFiles className="w-5 h-5 hover:rotate-90 duration-300" />
           <span>View Resume</span>

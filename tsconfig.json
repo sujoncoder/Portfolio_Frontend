@@ -34,7 +34,7 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/loading.js",
-    "components/projects/Project.jsx"
+    "components/projects/Project.tsx"
   ],
   "exclude": [
     "node_modules"

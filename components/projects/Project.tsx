@@ -3,7 +3,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { IconEye } from '@tabler/icons-react';
 
-const Project = ({ project }) => {
+
+interface IProjectProps {
+  id: string;
+  img: string;
+  title: string;
+};
+
+const Project = ({ project }: { project: IProjectProps }) => {
+
   const { id, img, title } = project;
 
   return (
