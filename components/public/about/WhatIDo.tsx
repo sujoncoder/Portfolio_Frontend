@@ -1,4 +1,3 @@
-/* eslint-disable react/no-unescaped-entities */
 const WhatIDo = () => {
   return (
     <div className="space-y-4 mt-6 sm:mt-6">

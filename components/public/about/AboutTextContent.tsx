@@ -1,5 +1,4 @@
-"use client";
-
+"use client"
 import { IconArrowRightTail, IconFiles } from '@tabler/icons-react';
 import { useRouter } from "next/navigation";
 
@@ -45,7 +44,6 @@ const AboutTextContent = () => {
 
         <a
           target="_blank"
-          href=""
           className="bg-[#32455b] active:bg-[#0f2a47] duration-200 rounded px-2 sm:px-4 py-2 text-slate-100 inline-flex justify-between items-center space-x-2 font-medium cursor-pointer"
         >
           <IconFiles className="w-5 h-5 hover:rotate-90 duration-300" />
