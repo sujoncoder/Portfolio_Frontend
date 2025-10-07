@@ -1,27 +1,24 @@
 import PublicSideBar from "@/components/public/sideNavbar/PublicSideBar"
-import Container from "@/utils/max-width"
 
 const PublicLayout = ({ children }: { children: React.ReactNode }) => {
     return (
-        <div className="flex flex-col md:flex-row">
-            {/* PublicSideBar LARGER SCREEN */}
-            <div className="w-full sm:w-[300px] bg-[#1f2a39]">
-                <div className="hidden sm:block sm:sticky sm:h-screen">
+        <div className="flex flex-col md:flex-row min-h-screen">
+            {/* LARGER SCREEN - Fixed Position */}
+            <aside className="hidden sm:block sm:fixed sm:left-0 sm:top-0 sm:h-screen sm:w-[300px] bg-[#1f2a39] overflow-y-auto">
+                <PublicSideBar />
+            </aside>
+
+            {/* MAIN PAGE CONTENT - With left margin to avoid sidebar overlap */}
+            <main className="w-full min-h-screen bg-[#121821] px-4 sm:px-20 pt-10 pb-20 sm:pb-5 sm:ml-[300px]">
+                {children}
+            </main>
+
+            {/* AT THE BOTTOM FOR MOBILE MENU */}
+            <nav className="fixed w-full bottom-2 left-0 right-0 px-2 sm:hidden z-50">
+                <div className="bg-[#1f2a39]/50 border w-[350px] py-1 mx-auto border-neutral-700/50 backdrop-blur-md rounded-full">
                     <PublicSideBar />
                 </div>
-            </div>
-
-
-            {/* MAIN PAGE CONTENT */}
-            <div className="w-full min-h-screen bg-[#121821] px-4 sm:px-20 pt-10 pb-20 sm:pb-5 overflow-y-auto">
-                {children}
-            </div>
-
-
-            {/* PublicSideBar AT THE BOTTOM FOR MOBILE MENU */}
-            <div className="fixed w-full mx-auto bottom-2 rounded-full md:hidden bg-[#1f2a39]/50 border border-neutral-700/50 backdrop-blur-md">
-                <PublicSideBar />
-            </div>
+            </nav>
         </div>
     )
 }
