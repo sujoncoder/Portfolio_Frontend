@@ -6,12 +6,12 @@ import React, { useEffect, useRef, useState } from "react";
 interface ICertificateCardProps {
   institute: string;
   course: string;
-  image: string
-};
+  image: string;
+}
 
 const CertificateCard = ({ institute, course, image }: ICertificateCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const modalRef = useRef(0);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   const toggleModal = () => {
     setIsOpen(!isOpen);
@@ -32,7 +32,7 @@ const CertificateCard = ({ institute, course, image }: ICertificateCardProps) =>
       }
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
-      document.body.style.overflow = "auto"; // Restore background scroll
+      document.body.style.overflow = "auto";
     }
 
     return () => {
@@ -50,8 +50,8 @@ const CertificateCard = ({ institute, course, image }: ICertificateCardProps) =>
         <div className="relative w-full h-full">
           <Image
             src={image}
-            layout="fill"
-            objectFit="cover"
+            fill
+            style={{ objectFit: "cover" }}
             className="rounded"
             alt={institute}
           />
@@ -81,7 +81,7 @@ const CertificateCard = ({ institute, course, image }: ICertificateCardProps) =>
                 src={image}
                 width={800}
                 height={600}
-                objectFit="contain"
+                style={{ objectFit: "contain" }}
                 alt={institute}
               />
             </div>

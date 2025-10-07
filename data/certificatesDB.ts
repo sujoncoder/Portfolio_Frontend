@@ -1,8 +1,8 @@
-import { ICertificate } from "@/types";
+import { ICertificates } from "@/types";
 
 
 // CERTIFICATE DATA
-export const certificates: ICertificate[] = [
+export const certificates: ICertificates[] = [
   {
     institute: "Magura Govt H.S.S College",
     course: "Basic Web & Photo Shop",
