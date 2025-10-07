@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 
 
 const DashboardActiveLink = ({ path, children }: {
-    path: any;
+    path: string;
     children: React.ReactNode
 }) => {
     const pathname = usePathname();

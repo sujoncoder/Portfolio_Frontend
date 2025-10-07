@@ -1,6 +1,5 @@
 import { IconListLetters, IconLayout2, IconChartColumn, IconShieldCode, IconDeviceGamepad3 } from '@tabler/icons-react';
 import DashboardActiveLink from './DashboardActiveLink';
-import LogoutBtn from '../LogoutBtn';
 import DashboardProfile from './DashboardProfile';
 
 

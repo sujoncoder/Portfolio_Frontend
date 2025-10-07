@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 
 const AboutTextContent = () => {
   const router = useRouter();
-  const handleClick = (value: any) => {
+  const handleClick = (value: string) => {
     router.push(value);
   };
 
