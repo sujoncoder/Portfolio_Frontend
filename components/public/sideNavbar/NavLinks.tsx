@@ -1,6 +1,5 @@
 import { IconListLetters, IconAward, IconBrandHipchat, IconShieldCode, IconDeviceGamepad3, IconUserCode } from '@tabler/icons-react';
 import ActiveLink from "./ActiveLink";
-import Hirebtn from "./HireBtn";
 
 
 const links = [
@@ -23,9 +22,6 @@ const SideNavLinks = () => {
           </li>
         </ActiveLink>
       ))}
-      {/* <div className="flex justify-center items-center mt-8">
-        <Hirebtn />
-      </div> */}
     </ul>
   );
 };
