@@ -128,25 +128,11 @@ const skillsDB: ISkills[] = [
     level: "⭐⭐⭐⭐⭐",
   },
   {
-    id: "19",
-    title: "GraphQL",
-    img: "https://i.ibb.co/fQKMdkW/graphql.png",
-    category: "web",
-    level: "⭐⭐",
-  },
-  {
     id: "33",
     title: "Framer M",
     img: "https://i.ibb.co/xMvVsWp/motion/react.png",
     category: "tools",
     level: "⭐⭐⭐",
-  },
-  {
-    id: "10",
-    title: "Gatsby",
-    img: "https://i.ibb.co/Jkf66hb/gatesby.png",
-    category: "web",
-    level: "⭐⭐",
   },
   {
     id: "12",
