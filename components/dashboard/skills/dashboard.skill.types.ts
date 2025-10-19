@@ -12,3 +12,16 @@ export interface ISkills {
     skills: Skill[];
     isFullWidth?: boolean;
 };
+
+export interface DashboardSkillCardProps {
+    title: string;
+    description: string;
+    icon?: any;
+    skills: Skill[];
+    isFullWidth?: boolean;
+    colorScheme?: {
+        primary: string;
+        secondary: string;
+        accent: string;
+    }
+};

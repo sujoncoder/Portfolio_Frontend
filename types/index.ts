@@ -29,7 +29,7 @@ export interface IProjects {
 export type SkillCategory = 'all' | 'programming' | 'web' | 'tools';
 
 export interface ISkills {
-    id: string;
+    id: number;
     title: string;
     img: string;
     category: SkillCategory

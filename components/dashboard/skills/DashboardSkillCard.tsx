@@ -1,61 +1,62 @@
 "use client"
 
-import { useState } from "react";
-import { ISkills } from "./dashboard.skill.types";
+import React, { useState } from 'react';
+import { DashboardSkillCardProps } from './dashboard.skill.types';
+import Image from 'next/image';
 
 
-const DashboardSkillCard: React.FC<ISkills> = ({ title, semiTitle, icon: Icon, skills, isFullWidth = false }) => {
-    const [hoveredSkill, setHoveredSkill] = useState(null);
+const DashboardSkillCard: React.FC<DashboardSkillCardProps> = ({
+    title,
+    description,
+    icon: Icon,
+    skills,
+    isFullWidth,
+    colorScheme = {}
+}) => {
+    const [hoveredSkill, setHoveredSkill] = useState<number | null>(null);
 
     return (
-        <div className={`${isFullWidth ? 'col-span-1 md:col-span-3' : 'col-span-1'} relative bg-white/5 backdrop-blur-xl rounded-xl p-6 overflow-hidden group hover:bg-white/10 transition-all duration-500`}>
+        <div className={`${isFullWidth ? 'col-span-1 md:col-span-3' : 'col-span-1'} relative bg-white/5 rounded-xl backdrop-blur-xl p-5 overflow-hidden group transition-all duration-300 hover:bg-white/10`}>
             {/* Background Gradient Blobs */}
-            <div className="absolute inset-0 -z-10 pointer-events-none">
-                <div className="absolute top-0 right-0 w-48 h-48 bg-gradient-to-br from-blue-500/20 to-purple-600/20 rounded-full blur-3xl group-hover:scale-110 transition-transform duration-700"></div>
-                <div className="absolute bottom-0 left-0 w-56 h-56 bg-gradient-to-tr from-cyan-500/15 to-blue-600/15 rounded-full blur-3xl group-hover:scale-110 transition-transform duration-700"></div>
+            <div className="absolute inset-0 -z-10">
+                <div className={`absolute top-0 right-0 w-40 h-40 bg-gradient-to-br ${colorScheme.primary} rounded-full blur-3xl opacity-20 group-hover:opacity-30 transition-opacity`}></div>
+                <div className={`absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr ${colorScheme.secondary} rounded-full blur-3xl opacity-15 group-hover:opacity-25 transition-opacity`}></div>
             </div>
 
-            {/* Header */}
-            <div className="flex items-start justify-between mb-6">
-                <div>
-                    <div className="flex items-center gap-3 mb-2">
-                        <div className="p-2.5 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl border border-blue-500/30 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
-                            <Icon className="w-5 h-5 text-blue-400" />
-                        </div>
-                        <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-400 bg-clip-text text-transparent">
-                            {title}
-                        </h3>
-                    </div>
-                    <p className="text-slate-400 text-sm ml-12">{semiTitle}</p>
+            {/* HEADER */}
+            <div className="flex items-start gap-5">
+                <div className="inline-flex items-center justify-center w-10 h-10 bg-slate-500/30 rounded-full shadow-lg shadow-green-500/20 group-hover:shadow-green-500/40 transition-shadow flex-shrink-0">
+                    <Icon className="w-6 h-6 text-white/50" />
                 </div>
-
-                {/* Decorative Dots */}
-                <div className="flex gap-1.5">
-                    <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></div>
-                    <div className="w-2 h-2 rounded-full bg-cyan-500 animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-                    <div className="w-2 h-2 rounded-full bg-purple-500 animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+                <div className="flex-1">
+                    <h3 className={`text-xl font-bold bg-gradient-to-r ${colorScheme.accent} bg-clip-text text-transparent mb-2`}>
+                        {title}
+                    </h3>
+                    <p className="text-slate-300 text-sm">{description}</p>
                 </div>
             </div>
 
-            {/* Skills Images - Overlapping Circles */}
-            <div className="relative">
-                <div className={`flex ${isFullWidth ? 'justify-center' : 'justify-start'} items-center py-8`}>
-                    {skills.map((skill, index: any) => (
+            {/* SKILLS IMAGES */}
+            <div className="relative mt-10">
+                <div className={`flex ${isFullWidth ? 'justify-start' : 'justify-start'} items-center`}>
+                    {skills.map((skill, index) => (
                         <div
                             key={index}
                             className="relative group/skill"
                             style={{
-                                marginLeft: index === 0 ? '0' : '-20px',
+                                marginLeft: index === 0 ? '0' : '-12px',
                                 zIndex: hoveredSkill === index ? 50 : skills.length - index
                             }}
                             onMouseEnter={() => setHoveredSkill(index)}
                             onMouseLeave={() => setHoveredSkill(null)}
                         >
-                            {/* Image Container */}
-                            <div className={`relative w-12 h-12 rounded-full border-4 border-slate-800 bg-white/10 backdrop-blur-xl overflow-hidden transition-all duration-300 ${hoveredSkill === index ? 'scale-125 shadow-2xl shadow-blue-500/50 border-blue-500/50' : 'group-hover/skill:scale-110'
+                            {/* IMAGE CONTAINER */}
+                            <div className={`relative w-10 h-10 rounded-full border-2 border-black/50 p-1 bg-white/90 backdrop-blur-xl overflow-hidden transition-all duration-300 ${hoveredSkill === index ? 'scale-125 shadow-2xl shadow-blue-500/50 border-blue-500/50' : 'group-hover/skill:scale-110'
                                 }`}>
-                                <img
+                                <Image
                                     src={skill.image}
+                                    width={100}
+                                    height={100}
                                     alt={skill.name}
                                     className="w-full h-full object-cover"
                                 />
@@ -72,8 +73,8 @@ const DashboardSkillCard: React.FC<ISkills> = ({ title, semiTitle, icon: Icon, s
                     ))}
                 </div>
             </div>
-        </div >
+        </div>
     );
 };
 
-export default DashboardSkillCard
+export default DashboardSkillCard;

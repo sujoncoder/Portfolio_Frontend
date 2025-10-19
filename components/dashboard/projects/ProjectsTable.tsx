@@ -4,6 +4,7 @@ import React, { useState, useMemo } from 'react';
 import { MoreVertical, Edit2, Trash2, ExternalLink, Code, Plus, Search } from 'lucide-react';
 import projectsDB from '@/data/projectsDB';
 import TableController from './TableController';
+import Image from 'next/image';
 
 
 const ProjectsTable = () => {
@@ -90,8 +91,10 @@ const ProjectsTable = () => {
                                     <tr key={project.id} className="hover:bg-white/5">
                                         <td className="px-5">
                                             <div className="flex items-center gap-4">
-                                                <img
+                                                <Image
                                                     src={project?.img}
+                                                    width={100}
+                                                    height={100}
                                                     alt={project?.title}
                                                     className="w-10 h-10 rounded-lg object-cover"
                                                 />
