@@ -1,11 +1,26 @@
-import React from 'react'
+"use client"
+
+import { skillsData } from "@/components/dashboard/skills/dashboard.skills.data";
+import DashboardSkillCard from "@/components/dashboard/skills/DashboardSkillCard";
+
 
 const DashboardSkills = () => {
     return (
-        <div>
-            <h1 className='text-3xl font-bold text-red-500'>Dashboard Skill</h1>
-        </div>
-    )
-}
+        <>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                {skillsData.map((skill, index) => (
+                    <DashboardSkillCard
+                        key={index}
+                        title={skill.title}
+                        semiTitle={skill.semiTitle}
+                        icon={skill.icon}
+                        skills={skill.skills}
+                        isFullWidth={skill.isFullWidth}
+                    />
+                ))}
+            </div>
+        </>
+    );
+};
 
 export default DashboardSkills;
