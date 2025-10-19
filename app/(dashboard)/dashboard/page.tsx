@@ -1,8 +1,11 @@
+import DashboardHome from "@/components/dashboard/home/DashboardGreeting";
+import DashboardTips from "@/components/dashboard/home/DashboardTips";
 
 const DashboardPage = () => {
     return (
-        <div>
-            <h1 className='text-center text-4xl text-red-500 font-bold'>Good Night 🌚</h1>
+        <div className="space-y-5">
+            <DashboardHome />
+            <DashboardTips />
         </div>
     )
 }

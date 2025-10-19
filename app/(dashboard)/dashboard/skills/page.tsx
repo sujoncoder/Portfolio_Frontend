@@ -1,11 +1,20 @@
-import React from 'react'
+"use client"
 
-const DashboardSkills = () => {
+import DashboardAddSkill from "@/components/dashboard/skills/DashboardAddSkill";
+import DashboardAllSkillCard from "@/components/dashboard/skills/DashboardAllSkillCard";
+
+
+// DASHBOARD SKILL PAGE
+const DashboardSkillsPage = () => {
     return (
         <div>
-            <h1 className='text-3xl font-bold text-red-500'>Dashboard Skill</h1>
-        </div>
-    )
-}
+            <DashboardAllSkillCard />
 
-export default DashboardSkills;
+            <div className="mt-10">
+                <DashboardAddSkill />
+            </div>
+        </div>
+    );
+};
+
+export default DashboardSkillsPage;

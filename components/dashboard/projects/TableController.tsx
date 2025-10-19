@@ -1,5 +1,6 @@
 import React from 'react';
 import { Plus, Search } from 'lucide-react';
+import AddButon from '../common/AddButon';
 
 
 interface TableControllerProps {
@@ -8,6 +9,7 @@ interface TableControllerProps {
     categoryFilter: string;
     setCategoryFilter: (v: any) => void;
 };
+
 
 // TABLE CONTROLLER COMPONENT
 const TableController = ({ searchQuery, setSearchQuery, categoryFilter, setCategoryFilter }: TableControllerProps) => {
@@ -43,16 +45,9 @@ const TableController = ({ searchQuery, setSearchQuery, categoryFilter, setCateg
                 </select>
 
                 {/* Cute Add Button */}
-                <button className="group relative px-3 py-2 bg-gradient-to-r from-blue-500/20 to-purple-500/20 hover:from-blue-500/30 hover:to-purple-500/30 border border-blue-500/50 hover:border-blue-500/50 rounded-full transition-all duration-300 cursor-pointer hover:scale-105 hover:shadow-lg hover:shadow-blue-500/30 active:scale-95 backdrop-blur-xl overflow-hidden">
-                    {/* Shine Effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-
-                    {/* Button Content */}
-                    <div className="relative flex items-center gap-2">
-                        <Plus className="w-4 h-4 text-blue-400 group-hover:rotate-90 transition-transform duration-300" />
-                        <span className="hidden sm:inline text-slate-100">Add New</span>
-                    </div>
-                </button>
+                <AddButon>
+                    Add New
+                </AddButon>
             </div>
         </div>
     )
