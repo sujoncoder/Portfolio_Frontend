@@ -19,7 +19,7 @@ const skillsDB: ISkills[] = [
   {
     id: 3,
     title: "Bun",
-    img: "https://i.ibb.co.com/cSx2xGzj/bun.png",
+    img: "https://i.ibb.co.com/cc933bfr/bun.png",
     category: "tools",
     level: "⭐⭐"
   },
@@ -40,7 +40,7 @@ const skillsDB: ISkills[] = [
   {
     id: 6,
     title: "Express",
-    img: "https://i.ibb.co.com/MkVdGQXv/express.png",
+    img: "https://i.ibb.co.com/7JQH6Ff9/express.png",
     category: "web",
     level: "⭐⭐⭐⭐"
   },
@@ -173,7 +173,7 @@ const skillsDB: ISkills[] = [
   {
     id: 25,
     title: "Prisma",
-    img: "https://i.ibb.co.com/CqzgcCD/prisma.png",
+    img: "https://i.ibb.co.com/fGD6M3y4/prisma.png",
     category: "web",
     level: "⭐⭐⭐"
   },

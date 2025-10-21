@@ -5,7 +5,7 @@ import DashboardSkillCard from "@/components/dashboard/skills/DashboardSkillCard
 // DASHBOARD ALL SKILLS CARD
 const DashboardAllSkillCard = () => {
     return (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-5">
             <DashboardSkillCard
                 title={programming.title}
                 description={programming.semiTitle}
@@ -56,6 +56,6 @@ const DashboardAllSkillCard = () => {
             />
         </div>
     )
-}
+};
 
-export default DashboardAllSkillCard
+export default DashboardAllSkillCard;

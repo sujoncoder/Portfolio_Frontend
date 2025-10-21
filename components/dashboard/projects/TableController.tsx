@@ -1,6 +1,6 @@
 import React from 'react';
 import { Plus, Search } from 'lucide-react';
-import AddButon from '../common/AddButon';
+import AddButon from '../UI/CustomButton';
 
 
 interface TableControllerProps {
@@ -45,7 +45,7 @@ const TableController = ({ searchQuery, setSearchQuery, categoryFilter, setCateg
                 </select>
 
                 {/* Cute Add Button */}
-                <AddButon>
+                <AddButon className='rounded-full'>
                     Add New
                 </AddButon>
             </div>

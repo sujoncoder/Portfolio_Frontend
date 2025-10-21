@@ -1,4 +1,10 @@
-import React from "react";
+// SKILL FORM DATA
+export interface SkillFormData {
+    title: string;
+    image: string;
+    category: string;
+    level: number;
+};
 
 export interface Skill {
     name: string;

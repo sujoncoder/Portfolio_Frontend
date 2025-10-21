@@ -1,7 +1,15 @@
-import { Code2, Palette, Server, Wrench } from "lucide-react";
-import { ISkills } from "./dashboard.skill.types";
+import { Code2, Palette, Server, Wrench, Globe } from "lucide-react";
+import { ISkills } from "../types/DashboardTypes";
+
+// CATEGORIES DATA
+export const categories = [
+    { value: 'programming', label: 'Programming', icon: Code2 },
+    { value: 'web', label: 'Web', icon: Globe },
+    { value: 'tools', label: 'Tools', icon: Wrench }
+];
 
 
+// SKILLS DATA
 export const programming: ISkills = {
     title: "Programming",
     semiTitle: "Core Languages",
@@ -11,8 +19,6 @@ export const programming: ISkills = {
         { name: "TypeScript", image: "https://i.ibb.co.com/HyXw1Zj/ts.png" },
     ]
 };
-
-
 export const frontend: ISkills = {
     title: "Frontend",
     semiTitle: "UI Development",
@@ -26,7 +32,6 @@ export const frontend: ISkills = {
         { name: "Tailwind CSS", image: "https://i.ibb.co.com/cKDszT11/tailwind.png" },
     ]
 };
-
 export const backend: ISkills = {
     title: "Backend",
     semiTitle: "Server & Database",
@@ -38,12 +43,11 @@ export const backend: ISkills = {
         { name: "PostgreSQL", image: "https://i.ibb.co.com/qMFLgvHQ/postgres.png" },
         { name: "AWS", image: "https://i.ibb.co.com/9H13sMFW/aws.png" },
         { name: "Docker", image: "https://i.ibb.co.com/v4Tfpz39/docker.png" },
-        { name: "Express", image: "https://i.ibb.co.com/MkVdGQXv/express.png" },
+        { name: "Express", image: "https://i.ibb.co.com/7JQH6Ff9/express.png" },
         { name: "Mongoose", image: "https://i.ibb.co.com/SXXCsmkZ/mongoose.png" },
-        { name: "Prisma", image: "https://i.ibb.co.com/CqzgcCD/prisma.png" },
+        { name: "Prisma", image: "https://i.ibb.co.com/fGD6M3y4/prisma.png" },
     ]
 };
-
 export const tools: ISkills = {
     title: "Tools",
     semiTitle: "Development Tools & Platforms",
@@ -58,7 +62,7 @@ export const tools: ISkills = {
         { name: "Jest", image: "https://i.ibb.co.com/YB9rS50R/jest.webp" },
         { name: "React Motion", image: "https://i.ibb.co.com/wrJGtRw4/motion.png" },
         { name: "NPM", image: "https://i.ibb.co.com/sMR2qwL/npm.png" },
-        { name: "BUN", image: "https://i.ibb.co.com/cSx2xGzj/bun.png" },
+        { name: "BUN", image: "https://i.ibb.co.com/cc933bfr/bun.png" },
         { name: "Vite", image: "https://i.ibb.co.com/cKX8hcxC/vite.png" },
         { name: "Vercel", image: "https://i.ibb.co.com/S7J876FF/vercel.webp" },
         { name: "ShadCN", image: "https://i.ibb.co.com/Jw45NS1h/shadcn.png" },
