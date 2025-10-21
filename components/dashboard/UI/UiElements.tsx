@@ -7,14 +7,21 @@ import DashboardModalClose from "../skills/DashboardModalClose";
 interface ModalFrameProps {
     children: React.ReactNode;
     onClose?: () => void;
+    showClosIcon?: boolean;
 };
 
-export const ModalFrame = ({ children, onClose }: ModalFrameProps) => {
+export const ModalFrame: React.FC<ModalFrameProps> = ({
+    children,
+    onClose,
+    showClosIcon = true
+
+}) => {
     return (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center">
             <div className="relative min-w-sm bg-white/5 backdrop-blur-xl rounded-xl p-5 border border-white/10">
                 {/* CLOSE MODAL COMPONENT  */}
-                <DashboardModalClose onClose={onClose} />
+                {showClosIcon && <DashboardModalClose onClose={onClose} />}
+
                 {children}
             </div>
         </div>
