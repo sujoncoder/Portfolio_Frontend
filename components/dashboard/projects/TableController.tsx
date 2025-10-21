@@ -22,9 +22,14 @@ const TableController: React.FC<TableControllerProps> = ({
 
     const [showProjectForm, setShowProjectForm] = useState<boolean>(false);
 
-    // HANDLE OPEN ADD PROJECT FORM
+    // HANDLE OPEN PROJECT FORM
     const handleOpenProjectForm = () => {
         setShowProjectForm(true)
+    };
+
+    // HANDLE CLOSE PROJECT FORM
+    const handleCloseProjectForm = () => {
+        setShowProjectForm(false)
     };
 
 
@@ -67,15 +72,12 @@ const TableController: React.FC<TableControllerProps> = ({
                 </AddButon>
 
                 {/* PROJECT MODAL OPEN  */}
-
-                {
-                    showProjectForm && (
-                        <DashboardAddProjectForm />
-                    )
-                }
+                {showProjectForm && (
+                    <DashboardAddProjectForm onClose={handleCloseProjectForm} />
+                )}
             </div>
         </div>
     )
-}
+};
 
-export default TableController
+export default TableController;

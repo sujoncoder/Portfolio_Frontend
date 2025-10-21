@@ -100,13 +100,11 @@ const DashboardAddProjectForm: React.FC<AddProjectFormProps> = ({ onSubmit, onCl
 
     return (
         <ModalFrame onClose={onClose}>
-            {/* Background Blobs */}
             <BackgroundBlobs
                 primary="from-blue-500 to-purple-600"
                 secondary="from-cyan-500 to-blue-600"
             />
 
-            {/* Header */}
             <div className="relative flex items-center justify-between mb-6">
                 <HiText>
                     Add New Project
@@ -114,63 +112,106 @@ const DashboardAddProjectForm: React.FC<AddProjectFormProps> = ({ onSubmit, onCl
             </div>
 
             {/* FORM */}
-            <form onSubmit={handleSubmit} className="space-y-5 max-h-[70vh] overflow-y-auto pr-2">
-                <div>
-                    <label className="block text-slate-300 text-sm font-medium mb-2 font-mono">
-                        Project Title
-                    </label>
-                    <input
-                        type="text"
-                        value={formData.title}
-                        onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                        placeholder="e.g., Travel Lodge"
-                        required
-                        className="w-full px-4 py-2 border border-white/10 bg-white/5 text-slate-200 rounded-lg placeholder:text-slate-500 focus:outline-none focus:border-white/20"
-                    />
-                </div>
+            <form onSubmit={handleSubmit} className="space-y-2">
 
-                {/* Image Upload Component */}
-                <UploadImage
-                    imagePreview={imagePreview}
-                    OnHandleImageUpload={handleImageUpload}
-                    OnSetImagePreview={(value) => {
-                        setImagePreview(value);
-                        setFormData({ ...formData, img: value });
-                    }}
-                />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label className="block text-slate-300 text-sm font-medium mb-2 font-mono">
+                            Project Title
+                        </label>
+                        <input
+                            type="text"
+                            value={formData.title}
+                            onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                            placeholder="e.g., Travel Lodge"
+                            required
+                            className="w-full px-2 py-2 border border-white/10 bg-white/5 text-slate-200 rounded-lg placeholder:text-slate-500 focus:outline-none focus:border-white/20"
+                        />
+                    </div>
 
-                {/* Category */}
-                <div>
-                    <label className="block text-slate-300 text-sm font-medium mb-2 font-mono">
-                        Category
-                    </label>
-                    <div className="flex gap-2">
-                        {categorieProjects.map((cat) => {
-                            const isSelected = formData.category === cat.value;
-                            return (
-                                <label
-                                    key={cat.value}
-                                    className={`flex-1 flex items-center justify-center px-3 py-2 rounded-lg border cursor-pointer transition-all duration-200 ${isSelected
-                                        ? 'border-blue-500 bg-blue-500/10 text-blue-400'
-                                        : 'border-white/10 bg-white/5 text-slate-400 hover:border-white/20 hover:bg-white/10'
-                                        }`}
-                                >
-                                    <input
-                                        type="radio"
-                                        name="category"
-                                        value={cat.value}
-                                        checked={isSelected}
-                                        onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-                                        className="sr-only"
-                                    />
-                                    <span className="text-sm font-medium">{cat.label}</span>
-                                </label>
-                            );
-                        })}
+                    {/* TECHNOLOGIES */}
+                    <div>
+                        <label className="block text-slate-300 text-sm font-medium mb-2 font-mono">
+                            Technologies
+                        </label>
+                        <div className="relative">
+                            <input
+                                type="text"
+                                value={currentTech}
+                                onChange={(e) => setCurrentTech(e.target.value)}
+                                onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddTech())}
+                                placeholder="e.g., Next.js (Press Enter)"
+                                className="w-full px-2 py-2 pr-12 border border-white/10 bg-white/5 text-slate-200 rounded-lg placeholder:text-slate-500 focus:outline-none focus:border-white/20"
+                            />
+                            <button
+                                type="button"
+                                onClick={handleAddTech}
+                                className="absolute right-1 top-1/2 -translate-y-1/2 p-1.5 bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/30 rounded-md transition-colors"
+                            >
+                                <Plus className="w-4 h-4 text-blue-400" />
+                            </button>
+                        </div>
                     </div>
                 </div>
 
-                {/* Live & Code URLs */}
+                {/* TECHNOLOGIES TAGS */}
+                <div className="flex flex-wrap gap-1">
+                    {formData.technologies.map((tech, index) => (
+                        <span key={index} className="inline-flex items-center gap-1 px-2 py-1 bg-blue-500/10 border border-blue-500/30 text-blue-400 rounded-full text-xs">
+                            {tech}
+                            <button type="button" onClick={() => handleRemoveTech(index)} className="hover:text-blue-300">
+                                <X className="w-3 h-3" />
+                            </button>
+                        </span>
+                    ))}
+                </div>
+
+                {/* IMAGE UPLOAD & CATEGORY */}
+                <div className='flex justify-between space-x-2 sm:space-x-4 items-center sm:my-3'>
+                    <UploadImage
+                        imagePreview={imagePreview}
+                        OnHandleImageUpload={handleImageUpload}
+                        OnSetImagePreview={(value) => {
+                            setImagePreview(value);
+                            setFormData({ ...formData, img: value });
+                        }}
+                        levelText='Project Cover Photo'
+                        className='w-3/4'
+                    />
+
+                    {/* CATEGORY */}
+                    <div>
+                        <label className="block text-slate-300 text-sm font-medium mb-2 font-mono">
+                            Category
+                        </label>
+                        <div className="space-y-2">
+                            {categorieProjects.map((cat) => {
+                                const isSelected = formData.category === cat.value;
+                                return (
+                                    <label
+                                        key={cat.value}
+                                        className={`flex-1 flex items-center justify-center px-3 py-2 rounded-lg border cursor-pointer transition-all duration-200 ${isSelected
+                                            ? 'border-blue-500 bg-blue-500/10 text-blue-400'
+                                            : 'border-white/10 bg-white/5 text-slate-400 hover:border-white/20 hover:bg-white/10'
+                                            }`}
+                                    >
+                                        <input
+                                            type="radio"
+                                            name="category"
+                                            value={cat.value}
+                                            checked={isSelected}
+                                            onChange={(e) => setFormData({ ...formData, category: e.target.value })}
+                                            className="sr-only"
+                                        />
+                                        <span className="text-sm font-medium">{cat.label}</span>
+                                    </label>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </div>
+
+                {/* LIVE & CODE URL */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div>
                         <label className="block text-slate-300 text-sm font-medium mb-2 font-mono">
@@ -182,7 +223,7 @@ const DashboardAddProjectForm: React.FC<AddProjectFormProps> = ({ onSubmit, onCl
                             onChange={(e) => setFormData({ ...formData, live: e.target.value })}
                             placeholder="https://example.com"
                             required
-                            className="w-full px-4 py-2 border border-white/10 bg-white/5 text-slate-200 rounded-lg placeholder:text-slate-500 focus:outline-none focus:border-white/20"
+                            className="w-full px-2 py-2 border border-white/10 bg-white/5 text-slate-200 rounded-lg placeholder:text-slate-500 focus:outline-none focus:border-white/20"
                         />
                     </div>
                     <div>
@@ -195,70 +236,36 @@ const DashboardAddProjectForm: React.FC<AddProjectFormProps> = ({ onSubmit, onCl
                             onChange={(e) => setFormData({ ...formData, code: e.target.value })}
                             placeholder="https://github.com/..."
                             required
-                            className="w-full px-4 py-2 border border-white/10 bg-white/5 text-slate-200 rounded-lg placeholder:text-slate-500 focus:outline-none focus:border-white/20"
+                            className="w-full px-2 py-2 border border-white/10 bg-white/5 text-slate-200 rounded-lg placeholder:text-slate-500 focus:outline-none focus:border-white/20"
                         />
                     </div>
                 </div>
 
-                {/* Technologies */}
-                <div>
-                    <label className="block text-slate-300 text-sm font-medium mb-2 font-mono">
-                        Technologies
-                    </label>
-                    <div className="flex gap-2 mb-3">
-                        <input
-                            type="text"
-                            value={currentTech}
-                            onChange={(e) => setCurrentTech(e.target.value)}
-                            onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddTech())}
-                            placeholder="e.g., Next.js (Press Enter)"
-                            className="flex-1 px-4 py-2 border border-white/10 bg-white/5 text-slate-200 rounded-lg placeholder:text-slate-500 focus:outline-none focus:border-white/20"
-                        />
-                        <button
-                            type="button"
-                            onClick={handleAddTech}
-                            className="px-4 py-2 bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/30 rounded-lg transition-colors"
-                        >
-                            <Plus className="w-5 h-5 text-blue-400" />
-                        </button>
-                    </div>
-                    <div className="flex flex-wrap gap-2">
-                        {formData.technologies.map((tech, index) => (
-                            <span key={index} className="inline-flex items-center gap-2 px-3 py-1 bg-blue-500/10 border border-blue-500/30 text-blue-400 rounded-full text-sm">
-                                {tech}
-                                <button type="button" onClick={() => handleRemoveTech(index)} className="hover:text-blue-300">
-                                    <X className="w-3 h-3" />
-                                </button>
-                            </span>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Description */}
+                {/* DESCRIPTION */}
                 <div>
                     <label className="block text-slate-300 text-sm font-medium mb-2 font-mono">
                         Description Points
                     </label>
-                    <div className="flex gap-2 mb-3">
+                    <div className="relative mb-3">
                         <input
                             type="text"
                             value={currentDesc}
                             onChange={(e) => setCurrentDesc(e.target.value)}
                             onKeyPress={(e) => e.key === 'Enter' && (e.preventDefault(), handleAddDesc())}
                             placeholder="e.g., Users can create accounts (Press Enter)"
-                            className="flex-1 px-4 py-2 border border-white/10 bg-white/5 text-slate-200 rounded-lg placeholder:text-slate-500 focus:outline-none focus:border-white/20"
+                            className="w-full px-2 py-2 pr-12 border border-white/10 bg-white/5 text-slate-200 rounded-lg placeholder:text-slate-500 focus:outline-none focus:border-white/20"
                         />
                         <button
                             type="button"
                             onClick={handleAddDesc}
-                            className="px-4 py-2 bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/30 rounded-lg transition-colors"
+                            className="absolute right-1 top-1/2 -translate-y-1/2 p-1.5 bg-blue-500/20 hover:bg-blue-500/30 border border-blue-500/30 rounded-md transition-colors"
                         >
-                            <Plus className="w-5 h-5 text-blue-400" />
+                            <Plus className="w-4 h-4 text-blue-400" />
                         </button>
                     </div>
-                    <div className="space-y-2">
+                    <div className="space-y-1">
                         {formData.description.map((desc, index) => (
-                            <div key={index} className="flex items-start gap-2 p-3 bg-white/5 border border-white/10 rounded-lg group hover:bg-white/10 transition-colors">
+                            <div key={index} className="flex items-start gap-2 px-2 py-1 bg-white/5 border border-white/10 rounded-lg group hover:bg-white/10 transition-colors">
                                 <span className="text-slate-300 text-sm flex-1">{desc}</span>
                                 <button
                                     type="button"
@@ -273,7 +280,7 @@ const DashboardAddProjectForm: React.FC<AddProjectFormProps> = ({ onSubmit, onCl
                 </div>
 
                 {/* SUBMIT BUTTON */}
-                <CustomButton className='w-full rounded-xl text-center'>
+                <CustomButton className='w-full rounded-lg mt-5 flex justify-center gap-5'>
                     Add Project
                 </CustomButton>
             </form>
