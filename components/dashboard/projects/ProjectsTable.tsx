@@ -1,30 +1,61 @@
 "use client"
 
+import Image from 'next/image';
 import React, { useState, useMemo } from 'react';
-import { MoreVertical, Edit2, Trash2, ExternalLink, Code, Plus, Search } from 'lucide-react';
+import { MoreVertical, Edit2, Trash2, ExternalLink, Code } from 'lucide-react';
 import projectsDB from '@/data/projectsDB';
 import TableController from './TableController';
-import Image from 'next/image';
+import ProjectDeleteModal from './ProjectDeleteModal';
 
 
+// PROJECTS TABLE COMPONENT
 const ProjectsTable = () => {
-    const [openMenuId, setOpenMenuId] = useState(null);
+    const [projects, setProjects] = useState<any[]>(projectsDB);
+    const [openMenuId, setOpenMenuId] = useState<any>(null);
     const [searchQuery, setSearchQuery] = useState('');
     const [categoryFilter, setCategoryFilter] = useState('all');
 
+    // MODAL STATE
+    const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+    const [projectToDelete, setProjectToDelete] = useState<any>(null);
+
+    // TOGGLE MENU
     const toggleMenu = (id: any) => {
         setOpenMenuId(openMenuId === id ? null : id);
     };
 
-    // Filter projects based on search and category
+    // OPEN CONFIRMATION MODAL
+    const openDeleteModal = (projectId: any) => {
+        setProjectToDelete(projectId);
+        setIsDeleteModalOpen(true);
+        setOpenMenuId(null);
+    };
+
+    // CLOSE DELETE MODAL
+    const closeDeleteModal = () => {
+        setProjectToDelete(null);
+        setIsDeleteModalOpen(false);
+    };
+
+    // CONFIRM DELETE PROJECT
+    const confirmDeleteProject = () => {
+        if (projectToDelete == null) {
+            closeDeleteModal();
+            return;
+        }
+        setProjects(prev => prev.filter(p => p.id !== projectToDelete));
+        closeDeleteModal();
+    };
+
+    // FILTER PROJECT BASED ON SEARCH & QUERY
     const filteredProjects = useMemo(() => {
-        return projectsDB.filter(project => {
+        return projects.filter(project => {
             const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                project.technologies.some(tech => tech.toLowerCase().includes(searchQuery.toLowerCase()));
+                project.technologies.some((tech: string) => tech.toLowerCase().includes(searchQuery.toLowerCase()));
             const matchesCategory = categoryFilter === 'all' || project.category === categoryFilter;
             return matchesSearch && matchesCategory;
         });
-    }, [searchQuery, categoryFilter]);
+    }, [projects, searchQuery, categoryFilter]);
 
 
     return (
@@ -113,7 +144,7 @@ const ProjectsTable = () => {
 
                                         <td className="px-5">
                                             <div className="flex flex-wrap gap-1.5">
-                                                {project.technologies.slice(0, 3).map((tech, idx) => (
+                                                {project.technologies.slice(0, 3).map((tech: string, idx: number) => (
                                                     <span
                                                         key={idx}
                                                         className="px-2 py-1 text-xs bg-white/10 text-gray-300 rounded-full border border-white/10"
@@ -155,7 +186,11 @@ const ProjectsTable = () => {
                                                 <button className="p-2 rounded-lg bg-blue-500/10 text-blue-400 hover:bg-blue-500/20 hover:scale-110 transition-all duration-300 ease-in-out cursor-pointer">
                                                     <Edit2 className="w-4 h-4" />
                                                 </button>
-                                                <button className="p-2 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 hover:scale-110 transition-all duration-300 ease-in-out cursor-pointer">
+                                                <button
+                                                    onClick={() => openDeleteModal(project.id)}
+                                                    className="p-2 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 hover:scale-110 transition-all duration-300 ease-in-out cursor-pointer"
+                                                    aria-label={`Delete ${project.title}`}
+                                                >
                                                     <Trash2 className="w-4 h-4" />
                                                 </button>
                                             </div>
@@ -200,6 +235,8 @@ const ProjectsTable = () => {
                                     <button
                                         onClick={() => toggleMenu(project.id)}
                                         className="p-2 rounded-lg bg-white/5 text-gray-400 hover:bg-white/10 transition-colors"
+                                        aria-haspopup="true"
+                                        aria-expanded={openMenuId === project.id}
                                     >
                                         <MoreVertical className="w-5 h-5" />
                                     </button>
@@ -210,7 +247,10 @@ const ProjectsTable = () => {
                                                 <Edit2 className="w-4 h-4 text-blue-400" />
                                                 <span className="text-sm">Edit</span>
                                             </button>
-                                            <button className="w-full flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 transition-colors">
+                                            <button
+                                                onClick={() => openDeleteModal(project.id)}
+                                                className="w-full flex items-center gap-3 px-4 py-3 text-gray-300 hover:bg-white/5 transition-colors"
+                                            >
                                                 <Trash2 className="w-4 h-4 text-red-400" />
                                                 <span className="text-sm">Delete</span>
                                             </button>
@@ -222,7 +262,7 @@ const ProjectsTable = () => {
                             <div className="mb-4">
                                 <p className="text-gray-400 text-xs uppercase mb-2">Tech Stack</p>
                                 <div className="flex flex-wrap gap-2">
-                                    {project.technologies.map((tech, idx) => (
+                                    {project.technologies.map((tech: string, idx: number) => (
                                         <span
                                             key={idx}
                                             className="px-3 py-1 text-xs bg-white/10 text-gray-300 rounded border border-white/20"
@@ -257,8 +297,15 @@ const ProjectsTable = () => {
                     ))
                 )}
             </div>
+
+            {/* CONFIRMATION MODAL */}
+            {isDeleteModalOpen && (
+                <ProjectDeleteModal
+                    onClose={closeDeleteModal}
+                    onDelete={confirmDeleteProject} />
+            )}
         </div>
     );
-}
+};
 
 export default ProjectsTable;

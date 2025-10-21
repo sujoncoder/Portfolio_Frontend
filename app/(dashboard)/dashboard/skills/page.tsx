@@ -10,7 +10,7 @@ const DashboardSkillsPage = () => {
         <div>
             <DashboardAllSkillCard />
 
-            <div className="mt-10">
+            <div className="mt-5">
                 <DashboardAddSkill />
             </div>
         </div>
