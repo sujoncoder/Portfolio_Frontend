@@ -1,5 +1,5 @@
-import { backend, frontend, programming, tools } from "@/components/dashboard/skills/DashboardSkillsData";
 import DashboardSkillCard from "@/components/dashboard/skills/DashboardSkillCard";
+import { backend, frontend, programming, tools } from "../utils/DashboardData";
 
 
 // DASHBOARD ALL SKILLS CARD

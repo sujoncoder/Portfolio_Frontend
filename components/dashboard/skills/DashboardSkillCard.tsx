@@ -1,9 +1,24 @@
 "use client"
 
 import React, { useState } from 'react';
-import { DashboardSkillCardProps } from './dashboard.skill.types';
 import Image from 'next/image';
+import { Skill } from '../types/DashboardTypes';
+import BackgroundBlobs from '../UI/BackgroundBlobs';
 
+
+// COMPONENTS PROPS TYPE
+interface DashboardSkillCardProps {
+    title: string;
+    description: string;
+    icon?: any;
+    skills: Skill[];
+    isFullWidth?: boolean;
+    colorScheme?: {
+        primary: string;
+        secondary: string;
+        accent: string;
+    }
+};
 
 const DashboardSkillCard: React.FC<DashboardSkillCardProps> = ({
     title,

@@ -1,6 +1,7 @@
-import React from 'react';
-import { Plus, Search } from 'lucide-react';
+import React, { useState } from 'react';
+import { Search } from 'lucide-react';
 import AddButon from '../UI/CustomButton';
+import DashboardAddProjectForm from './DashboardAddProjectForm';
 
 
 interface TableControllerProps {
@@ -12,7 +13,21 @@ interface TableControllerProps {
 
 
 // TABLE CONTROLLER COMPONENT
-const TableController = ({ searchQuery, setSearchQuery, categoryFilter, setCategoryFilter }: TableControllerProps) => {
+const TableController: React.FC<TableControllerProps> = ({
+    searchQuery,
+    setSearchQuery,
+    categoryFilter,
+    setCategoryFilter
+}) => {
+
+    const [showProjectForm, setShowProjectForm] = useState<boolean>(false);
+
+    // HANDLE OPEN ADD PROJECT FORM
+    const handleOpenProjectForm = () => {
+        setShowProjectForm(true)
+    };
+
+
     return (
         <div className="bg-slate-500/10 p-5 rounded-xl my-5 flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
             {/* Search Bar */}
@@ -45,9 +60,19 @@ const TableController = ({ searchQuery, setSearchQuery, categoryFilter, setCateg
                 </select>
 
                 {/* Cute Add Button */}
-                <AddButon className='rounded-full'>
+                <AddButon
+                    openForm={handleOpenProjectForm}
+                    className='rounded-full'>
                     Add New
                 </AddButon>
+
+                {/* PROJECT MODAL OPEN  */}
+
+                {
+                    showProjectForm && (
+                        <DashboardAddProjectForm />
+                    )
+                }
             </div>
         </div>
     )

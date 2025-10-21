@@ -8,6 +8,12 @@ export const categories = [
     { value: 'tools', label: 'Tools', icon: Wrench }
 ];
 
+export const categorieProjects = [
+    { value: 'frontend', label: 'Frontend' },
+    { value: 'fullstack', label: 'Fullstack' },
+    { value: 'backend', label: 'Backend' },
+];
+
 
 // SKILLS DATA
 export const programming: ISkills = {
